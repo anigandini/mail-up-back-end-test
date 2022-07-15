@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,8 +16,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $products = ProductController::index(new Request)->getBody();
+    die($products);
+    return view('welcome', compact('products'));
 });
+
+Route::resource('products', ProductController::class);
 
 Auth::routes();
 
