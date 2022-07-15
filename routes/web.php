@@ -15,12 +15,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', function () {
-    $products = ProductController::index(new Request)->getBody();
-    die($products);
-    return view('welcome', compact('products'));
-});
-
 Route::resource('products', ProductController::class);
 
 Auth::routes();
